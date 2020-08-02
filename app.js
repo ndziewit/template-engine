@@ -138,8 +138,8 @@ function intern() {
     inquirer
     .prompt(internQs)
     .then( response => { 
-        const {internName, internEmail, internID, internSchool} = response;
-        employees.push(new Intern(internName, internEmail, internID, internSchool));
+        const {internName, internEmail, internId, internSchool} = response;
+        employees.push(new Intern(internName, internEmail, internId, internSchool));
         switch(response.newEmp) {
             case "Let's add an Engineer":
               engineer();
