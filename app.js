@@ -59,7 +59,7 @@ function manager() {
               intern();
               break;
             case "Not now":
-                finalize();
+                outputTeam();
               break;
             default:
                 break;
@@ -114,10 +114,23 @@ function intern() {
               intern();
               break;
             case "Not now":
-                finalize();
+                outputTeam();
               break;
             default:
                 break;
           }
     })
 }
+
+//Outputs team to html page
+function outputTeam(){
+    const html = render(employees);
+    fs.writeFile('output/team.html', html, function(err){
+        if(err){
+            console.log(err)
+        }
+    })
+}
+
+//Starts application through manager prompts
+manager();
