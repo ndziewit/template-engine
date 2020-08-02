@@ -45,28 +45,6 @@ const managerQs = [
     }
 ];
 
-function manager() {
-    inquirer
-    .prompt(managerQs)
-    .then( response => { 
-        const {managerName, managerEmail, managerOfficeNum, managerID} = response;
-        employees.push(new Manager(managerName, managerEmail, managerOfficeNum, managerID));
-        switch(response.newEmp) {
-            case "Let's add an Engineer":
-              engineer();
-              break;
-            case "Let's add an Intern":
-              intern();
-              break;
-            case "Not now":
-                outputTeam();
-              break;
-            default:
-                break;
-          }
-    })
-}
-
 const internQs = [
     {
         type: "input",
@@ -100,27 +78,6 @@ const internQs = [
     }
 ];
 
-function intern() {
-    inquirer
-    .prompt(internQs)
-    .then( response => { 
-        const {internName, internEmail, internSchool, internID} = response;
-        employees.push(new Intern(internName, internEmail, internSchool, internID));
-        switch(response.newEmp) {
-            case "Let's add an Engineer":
-              engineer();
-              break;
-            case "Let's add another intern":
-              intern();
-              break;
-            case "Not now":
-                outputTeam();
-              break;
-            default:
-                break;
-          }
-    })
-}
 
 const engineerQs = [
     {
@@ -155,6 +112,50 @@ const engineerQs = [
     }
 ];
 
+function manager() {
+    inquirer
+    .prompt(managerQs)
+    .then( response => { 
+        const {managerName, managerEmail, managerOfficeNum, managerID} = response;
+        employees.push(new Manager(managerName, managerEmail, managerOfficeNum, managerID));
+        switch(response.newEmp) {
+            case "Let's add an Engineer":
+              engineer();
+              break;
+            case "Let's add an Intern":
+              intern();
+              break;
+            case "Not now":
+                outputTeam();
+              break;
+            default:
+                break;
+          }
+    })
+}
+
+function intern() {
+    inquirer
+    .prompt(internQs)
+    .then( response => { 
+        const {internName, internEmail, internSchool, internID} = response;
+        employees.push(new Intern(internName, internEmail, internSchool, internID));
+        switch(response.newEmp) {
+            case "Let's add an Engineer":
+              engineer();
+              break;
+            case "Let's add another intern":
+              intern();
+              break;
+            case "Not now":
+                outputTeam();
+              break;
+            default:
+                break;
+          }
+    })
+}
+
 function engineer() {
     inquirer
     .prompt(engineerQs)
@@ -176,8 +177,6 @@ function engineer() {
           }
         })
 }
-
-
 
 //Outputs team to html page
 function outputTeam(){
