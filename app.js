@@ -20,12 +20,12 @@ const managerQs = [
     },
     {
         type: "input",
-        message: "What's their email address'?",
+        message: "What's their email address?",
         name: "managerEmail"
     },
     {
         type: "input",
-        message: "What is their offic number?",
+        message: "What is the manager's office number?",
         name: "managerOfficeNum"
     },
     {
@@ -116,8 +116,8 @@ function manager() {
     inquirer
     .prompt(managerQs)
     .then( response => { 
-        const {managerName, managerEmail, managerOfficeNum, managerID} = response;
-        employees.push(new Manager(managerName, managerEmail, managerOfficeNum, managerID));
+        const {managerName, managerEmail, managerID, managerOfficeNum,} = response;
+        employees.push(new Manager(managerName, managerEmail, managerID, managerOfficeNum));
         switch(response.newEmp) {
             case "Let's add an Engineer":
               engineer();
@@ -138,8 +138,8 @@ function intern() {
     inquirer
     .prompt(internQs)
     .then( response => { 
-        const {internName, internEmail, internSchool, internID} = response;
-        employees.push(new Intern(internName, internEmail, internSchool, internID));
+        const {internName, internEmail, internID, internSchool} = response;
+        employees.push(new Intern(internName, internEmail, internID, internSchool));
         switch(response.newEmp) {
             case "Let's add an Engineer":
               engineer();
@@ -160,8 +160,8 @@ function engineer() {
     inquirer
     .prompt(engineerQs)
     .then( response => { 
-        const {engineerName, engineerEmail, engineerGithub, engineerID} = response;
-        employees.push(new Engineer(engineerName, engineerEmail, engineerGithub, engineerID));
+        const {engineerName, engineerEmail, engineerID, engineerGithub} = response;
+        employees.push(new Engineer(engineerName, engineerEmail, engineerID, engineerGithub));
         switch(response.newEmp) {
             case "Let's add another Engineer":
               engineer();
