@@ -122,6 +122,63 @@ function intern() {
     })
 }
 
+const engineerQs = [
+    {
+        type: "input",
+        message: "What is the Engineer's name?",
+        name: "engineerName"
+    },
+    {
+        type: "input",
+        message: "What is the Engineer's email address?",
+        name: "engineerEmail"
+    },
+    {
+        type: "input",
+        message: "What is the Engineer's GitHub profile account's name?",
+        name: "engineerGithub"
+    },
+    {
+        type: "input",
+        message: "What is the Engineer's employee ID?",
+        name: "engineerID"
+    },
+    {
+        type: "list",
+        message: "Would you like to add another team member?",
+        name: "newEmp",
+        choices: [
+            "Let's add another Engineer",
+            "Let's add an Intern",
+            "Not now"
+        ]
+    }
+];
+
+function engineer() {
+    inquirer
+    .prompt(engineerQs)
+    .then( response => { 
+        const {engineerName, engineerEmail, engineerGithub, engineerID} = response;
+        employees.push(new Engineer(engineerName, engineerEmail, engineerGithub, engineerID));
+        switch(response.newEmp) {
+            case "Let's add another Engineer":
+              engineer();
+              break;
+            case "Let's add an Intern":
+              intern();
+              break;
+            case "Not now":
+                outputTeam();
+              break;
+            default:
+                break;
+          }
+        })
+}
+
+
+
 //Outputs team to html page
 function outputTeam(){
     const html = render(employees);
